@@ -1,0 +1,25 @@
+@url = https://legendary-goggles-wpg6jpr96p5cjqj-8080.app.github.dev/genres
+
+POST {{url}}
+Content-Type: application/json
+
+{
+    "name": "Ação"
+}
+
+###
+GET {{url}}
+
+###
+GET {{url}}/1
+
+###
+PUT {{url}}/2
+Content-Type: application/json
+
+{
+    "name": "Ação Policial"
+}
+
+###
+DELETE {{url}}/2
