@@ -1,0 +1,25 @@
+@url = http://localhost:8080
+
+GET {{url}}/movies
+
+###
+
+GET {{url}}/movies/1
+
+####
+POST {{url}}/movies
+Content-Type: application/json
+
+{
+    "title": "Vingadores",
+    "genreId": 3
+}
+
+###
+PUT {{url}}/movies/1
+Content-Type: application/json
+
+{
+    "title": "Bad boys",
+    "genreId": 2
+}
