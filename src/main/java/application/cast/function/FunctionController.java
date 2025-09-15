@@ -36,7 +36,7 @@ public class FunctionController {
         return functionService.update(id, data);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
         functionService.delete(id);
     }
