@@ -1,6 +1,6 @@
 package application.cast;
 
-public record CastInsertDTO(long MovieId, long ArtistId, long FunctionId) {
+public record CastInsertDTO(long movieId, long artistId, long functionId) {
     public CastInsertDTO(Cast data) {
         this(
             data.getMovie().getId(), 
