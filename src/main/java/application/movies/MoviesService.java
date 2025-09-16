@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import application.genres.Genres;
-import application.genres.GenresDTO;
 import application.genres.GenresService;
 
 @Service
