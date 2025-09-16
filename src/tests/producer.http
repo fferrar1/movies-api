@@ -1,0 +1,12 @@
+@url = http://localhost:8080
+
+GET {{url}}/producers
+###
+GET {{url}}/producers/1
+###
+POST {{url}}/producers
+Content-Type: application/json
+
+{
+    "name": "Sony Pictures"
+}

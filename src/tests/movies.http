@@ -12,7 +12,8 @@ Content-Type: application/json
 
 {
     "title": "Vingadores",
-    "genreId": 3
+    "genreId": 3,
+    "producersIds": [1,2]
 }
 
 ###
@@ -20,8 +21,9 @@ PUT {{url}}/movies/1
 Content-Type: application/json
 
 {
-    "title": "Bad boys",
-    "genreId": 2
+    "title": "Avengers",
+    "genreId": 4,
+    "producersIds": [1]
 }
 
 ###
