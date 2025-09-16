@@ -1,6 +1,9 @@
 package application.movies;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import application.genres.Genres;
 import application.genres.GenresService;
+import application.producer.Producer;
+import application.producer.ProducerService;
 
 @Service
 public class MoviesService {
@@ -16,6 +21,8 @@ public class MoviesService {
     private MoviesRepository movieRepo;
     @Autowired
     private GenresService genreService;
+    @Autowired
+    private ProducerService producerService;
 
     public Iterable<MoviesDTO> getAll() {
         return movieRepo.findAll().stream().map(MoviesDTO::new).toList();
@@ -35,16 +42,21 @@ public class MoviesService {
 
     public MoviesDTO insert(MoviesInsertDTO newMovie) {
         Genres genre = new Genres(genreService.getOne(newMovie.genreId()));
+        Set<Producer> producers = newMovie.producersIds().stream().map(
+            p -> new Producer(producerService.getOne(p))).collect(Collectors.toSet());
 
         Movies movies = new Movies();
         movies.setTitle(newMovie.title());
         movies.setGenre(genre);
+        movies.setProducers(producers);
 
         return new MoviesDTO(movieRepo.save(movies));
     }
 
     public MoviesDTO update(long id, MoviesInsertDTO newData) {
         Optional<Movies> result = movieRepo.findById(id);
+        Set<Producer> producers = newData.producersIds().stream().map(
+            p -> new Producer(producerService.getOne(p))).collect(Collectors.toSet());
 
         if(result.isEmpty()) {
             throw new ResponseStatusException(
@@ -56,6 +68,7 @@ public class MoviesService {
 
         result.get().setTitle(newData.title());
         result.get().setGenre(genre);
+        result.get().setProducers(producers);
 
         return new MoviesDTO(movieRepo.save(result.get()));
     }

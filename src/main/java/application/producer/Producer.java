@@ -28,4 +28,8 @@ public class Producer {
     public Producer(ProducerInsertDTO data) {
         this.setName(data.name());
     }
+
+    public Producer(long id) {
+        this.setId(id);
+    }
 }

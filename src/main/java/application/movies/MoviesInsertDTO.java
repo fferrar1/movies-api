@@ -1,5 +1,7 @@
 package application.movies;
 
-public record MoviesInsertDTO(String title, long genreId) {
+import java.util.List;
+
+public record MoviesInsertDTO(String title, long genreId, List<Long> producersIds) {
     
 }
